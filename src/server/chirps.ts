@@ -3,13 +3,13 @@ import chirpStore from "./chirpstore";
 
 let router = express.Router();
 
-router.get("/:id?", (req, res) => {
+router.get("/:id", (req, res) => {
   let id = parseInt(req.params.id);
-  if (id) {
-    res.json(chirpStore.GetChirp(id));
-  } else {
+  res.json(chirpStore.GetChirp(id));
+})
+
+router.get("/", (req, res) => {
     res.send(chirpStore.GetChirps());
-  }
 });
 
 router.post("/", (req, res) => {

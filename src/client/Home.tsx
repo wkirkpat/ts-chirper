@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
+import AdminButton from "./AdminButton";
 
 const Home: React.FC<IHomeProps> = (props) => {
     const [chirps, setChirps] = useState<IChirp[]>([]);
@@ -30,10 +31,11 @@ const Home: React.FC<IHomeProps> = (props) => {
     return <div className="container">
         {chirps.map((chirp) => {
             return (
-                <div className="card">
+                <div key={chirp.id} className="card">
                     <div className="card-body">
                         <h5 className="card-title">{chirp.name}</h5>
                         <p className="card-text">{chirp.text}</p>
+                        <AdminButton id={chirp.id} />
                     </div>
                 </div>
             )
@@ -45,6 +47,7 @@ interface IHomeProps { }
 interface IChirp {
     name: string;
     text: string;
+    id: string
 }
 
 export default Home;
